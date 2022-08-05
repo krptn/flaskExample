@@ -8,9 +8,9 @@ Note: this example does not guard against brute force attacks. Please ensure rat
 
 ## Copyrights
 
-This is a modified version of the [Digital Ocean article](https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login)
+This is a modified version of the [Digital Ocean article](https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login).
 
-Some of this code was taken from [Google's WebAuthn tutorial on Glitch](https://glitch.com/edit/#!/webauthn-codelab-start?path=README.md%3A1%3A0)
+Some of this code was taken from [Google's WebAuthn tutorial on Glitch](https://glitch.com/edit/#!/webauthn-codelab-start?path=README.md%3A1%3A0).
 
 This code was modified from these sources to work with Krypton's Auth Backends. These include changing auth URLs, and base64 decoding, and modifying links on the webpage.
 
