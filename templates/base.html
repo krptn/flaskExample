@@ -1,7 +1,7 @@
 <!-- templates/base.html -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 
 <head>
     <meta charset="utf-8">
@@ -39,6 +39,11 @@
                             {% if current_user.loggedin %}
                             <a href="{{ url_for('logout') }}" class="navbar-item">
                                 Logout
+                            </a>
+                            {% endif %}
+                            {% if current_user.loggedin %}
+                            <a href="{{ url_for('fido') }}" class="navbar-item">
+                                Register FIDO
                             </a>
                             {% endif %}
                         </div>

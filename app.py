@@ -47,10 +47,27 @@ def login_post():
     resp.set_cookie('_kryptonAuthToken', token)
     return resp
 
-@app.route('/signup')
+@app.route('/fido')
+@get_user
+def fido(current_user):
+    return render_template('fido.html', current_user = current_user)
+
+@app.route('/fidoReg')
+@get_user
+def fidoReg(current_user:standardUser):
+    options = current_user.beginFIDOSetup()
+    return options
+
+@app.route('/fidoFinishReg')
+@get_user
+def fidoRegFinish(current_user:standardUser):
+    current_user.completeFIDOSetup(request.json)
+    return make_response(redirect(url_for('profile')))
+
+@app.route('/signup', methods=["GET"])
 @get_user
 def signup(current_user):
-    return render_template('signup.html', current_user = current_user)
+    return render_template("signup.html", current_user= current_user)
 
 @app.route('/signup', methods=['POST'])
 def signup_post():
