@@ -12,7 +12,7 @@ This is a modified version of the [Digital Ocean article](https://www.digitaloce
 
 Some of this code was taken from [Google's WebAuthn tutorial on Glitch](https://glitch.com/edit/#!/webauthn-codelab-start?path=README.md%3A1%3A0).
 
-This code was modified from these sources to work with Krypton's Auth Backends. These include changing auth URLs, and base64 decoding, and modifying links on the webpage.
+This code was modified from these sources to work with Krypton's Auth Backends. These include changing auth URLs, base64 decoding/encoding, and modifying links on the webpage.
 
 Here are the original copyright notices:
 
