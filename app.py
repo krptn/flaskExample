@@ -1,7 +1,8 @@
-from flask import Flask, make_response, redirect, request, render_template, url_for
+from flask import Flask, make_response, redirect, request, render_template, url_for, flash, get_flashed_messages
 from krypton.auth.users.userModel import standardUser
 from krypton.auth.users.bases import UserError
 from functools import wraps
+import json
 
 app = Flask(__name__)
 
@@ -40,20 +41,23 @@ def login(current_user):
 def login_post():
     email = request.form.get('email')
     password = request.form.get('password')
-    user = standardUser(email)
-    token = user.login(password)
+    try:
+        user = standardUser(email)
+        token = user.login(password)
+    except UserError:
+        return render_template('login.html', msg="Error. Please check your credentials.", current_user = standardUser(None))
     resp = make_response(redirect(url_for('profile')))
     resp.set_cookie('username', email)
     resp.set_cookie('_kryptonAuthToken', token)
     return resp
 
 @app.route('/fido')
-@get_user
+@login_required
 def fido(current_user):
     return render_template('fido.html', current_user = current_user)
 
 @app.route('/fidoReg')
-@get_user
+@login_required
 def fidoReg(current_user:standardUser):
     options = current_user.beginFIDOSetup()
     return options
@@ -61,7 +65,7 @@ def fidoReg(current_user:standardUser):
 @app.route('/fidoFinishReg')
 @get_user
 def fidoRegFinish(current_user:standardUser):
-    current_user.completeFIDOSetup(request.json)
+    current_user.completeFIDOSetup(json.dumps(request.get_json()["credentials"]))
     return make_response(redirect(url_for('profile')))
 
 @app.route('/signup', methods=["GET"])
@@ -75,7 +79,10 @@ def signup_post():
     name = request.form.get('name')
     password = request.form.get('password')
     user = standardUser(None)
-    token = user.saveNewUser(email, password)
+    try:
+        token = user.saveNewUser(email, password)
+    except:
+        return render_template('signup.html', msg="Error. Please check your credentials.", current_user=standardUser(None))
     user.setData("name", name)
     resp = make_response(redirect(url_for('profile')))
     resp.set_cookie('username', email)
