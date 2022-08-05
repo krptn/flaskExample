@@ -1,10 +1,10 @@
-# Flask Example
+# Krypton + FIDO Flask Example
 
 An example of how to integrate Krypton with flask.
 
-To extend this for MFA, please add an entry for MFA to the form, and pass it as a parameter to user.login. See [MFA in Krypton documentation](https://docs.krptn.dev/README-USER-AUTH.html#mfa)
+To extend this for TOTP MFA, please add an entry for TOTP MFA to the form, and pass it as a parameter to user.login. See [MFA in Krypton documentation](https://docs.krptn.dev/README-USER-AUTH.html#mfa)
 
-Note: this example does not gard against brute force attacks. Please ensure rate limiting is configured on your server.
+Note: this example does not guard against brute force attacks. Please ensure rate limiting is configured on your server.
 
 ## Copyrights
 
