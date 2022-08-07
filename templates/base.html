@@ -17,7 +17,6 @@
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
-
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
                             <a href="{{ url_for('index') }}" class="navbar-item">
@@ -31,6 +30,9 @@
                             {% if not current_user.loggedin %}
                             <a href="{{ url_for('login') }}" class="navbar-item">
                                 Login
+                            </a>
+                            <a href="{{ url_for('fidoLogin') }}" class="navbar-item">
+                                Login with FIDO
                             </a>
                             <a href="{{ url_for('signup') }}" class="navbar-item">
                                 Sign Up
