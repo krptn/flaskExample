@@ -25,7 +25,7 @@
 <script src="https://cdn.jsdelivr.net/gh/herrjemand/Base64URL-ArrayBuffer@latest/lib/base64url-arraybuffer.js"></script>
 <script>
     async function register() {
-        const response = await fetch("/fidoReg", {});
+        const response = await fetch("/fidoReg", {cache: "no-cache"});
         const options = await response.json();
 
         options.user.id = base64url.decode(options.user.id);
@@ -57,7 +57,12 @@
             };
         }
         localStorage.setItem(`KryptonFIDOcredId`, credential.id);
-        return await fetch('fidoFinishReg/', credential);
+        return await fetch('/fidoFinishReg', {
+            body: JSON.stringify(credential),
+            cache: "no-cache",
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}
+        });
     }
 </script>
 <button onclick="register()" class="button is-block is-info is-large is-fullwidth">Register</button>

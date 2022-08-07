@@ -1,6 +1,6 @@
 # Krypton + FIDO Flask Example
 
-An example of how to integrate Krypton with flask.
+An example of how to integrate Krypton with flask. You may want to use another database, in that case edit the config value in app.py.
 
 To extend this for TOTP MFA, please add an entry for TOTP MFA to the form, and pass it as a parameter to user.login. See [MFA in Krypton documentation](https://docs.krptn.dev/README-USER-AUTH.html#mfa)
 

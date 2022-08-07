@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!---
+    Some of this code was taken from Google's WebAuthn Glitch Tutorial: https://glitch.com/edit/#!/webauthn-codelab-start?path=README.md%3A1%3A0
+    This code was changed to work with Krypton's Auth Backends. These include changing auth URLs, loading JSON data.
+
+    Here is the original copyright notice:
+
+    Copyright 2019 Google Inc. All rights reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+        https://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License
+--->
+<h3 class="title">You are required to use FIDO as an MFA.</h1>
+<script src="https://cdn.jsdelivr.net/gh/herrjemand/Base64URL-ArrayBuffer@latest/lib/base64url-arraybuffer.js"></script>
+<script>
+    async function doFido() {
+        const email = document.getElementsByName("email")[0].value; // Replace with your password form
+        const pwd = document.getElementsByName("password")[0].value; // Replace with your password form
+        const query = {}
+        query.email = email;
+        const repsonse = await fetch("/getFidoLogin", // Replace endpoint with yours
+            {cache: 'no-cache',
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(query)}
+        );
+
+        const options = await repsonse.json();
+
+        options.challenge = base64url.decode(options.challenge);
+
+        for (let cred of options.allowCredentials) {
+            cred.id = base64url.decode(cred.id);
+        }
+        const cred = await navigator.credentials.get({
+            publicKey: options
+        });
+
+        const credential = {};
+        credential.fido = 1;
+        credential.id = cred.id;
+        credential.type = cred.type;
+        credential.rawId = base64url.encode(cred.rawId);
+
+        if (cred.response) {
+            const clientDataJSON =
+                base64url.encode(cred.response.clientDataJSON);
+            const authenticatorData =
+                base64url.encode(cred.response.authenticatorData);
+            const signature =
+                base64url.encode(cred.response.signature);
+            const userHandle =
+                base64url.encode(cred.response.userHandle);
+            credential.response = {
+                clientDataJSON,
+                authenticatorData,
+                signature,
+                userHandle,
+            };
+        }
+        credential.email = email;
+        credential.password = pwd;
+        const serverCreds = await fetch("/FIDOLogin",
+            {cache: 'no-cache',
+            method: 'POST',
+            credentials: "same-origin",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(credential)}
+        );
+        const jsonCreds = await serverCreds.json();
+        document.cookie = "username="+jsonCreds.username
+        document.cookie = "_kryptonAuthToken="+jsonCreds._kryptonAuthToken
+        location.replace("/profile")
+    }
+</script>
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Login</h3>
+    <p style="color: red;", id="msg">{{ msg }}</p>
+    <div class="box">
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="email" name="email" placeholder="Your Email" autofocus="" value="{{ password }}">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="password" name="password" placeholder="Your Password" value="{{ username }}">
+            </div>
+        </div>
+        <button class="button is-block is-info is-large is-fullwidth" onclick="doFido()">Login</button>
+    </div>
+</div>
+{% endblock %}
