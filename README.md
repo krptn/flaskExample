@@ -2,6 +2,12 @@
 
 An example of how to integrate Krypton with flask. You may want to use another database, in that case edit the config value in app.py.
 
+Don't forget to install Krypton before:
+
+```shell
+pip install krptn
+```
+
 To extend this for TOTP MFA, please add an entry for TOTP MFA to the form, and pass it as a parameter to user.login. See [MFA in Krypton documentation](https://docs.krptn.dev/README-USER-AUTH.html#mfa)
 
 Note: this example does not guard against brute force attacks. Please ensure rate limiting is configured on your server.
