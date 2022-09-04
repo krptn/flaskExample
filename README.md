@@ -2,7 +2,7 @@
 
 **Note:** for multiple reasons, this example is not production ready. Please do not use this in such an environment but rather take ideas from here on how to integrate Flask and Krypton.
 
-An example of how to integrate Krypton with flask. You may want to use another database, in that case edit the config value in app.py.
+In case you recieve concurency errors from SQLite, please use a different database backend. See our docs about [databases](https://docs.krptn.dev/README-DATABASES.html).
 
 Don't forget to install Krypton before:
 
