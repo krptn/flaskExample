@@ -4,10 +4,10 @@
 
 In case you recieve concurency errors from SQLite, please use a different database backend. See our docs about [databases](https://docs.krptn.dev/README-DATABASES.html).
 
-Don't forget to install Krypton before:
+Don't forget to install Krypton & Flask before:
 
 ```shell
-pip install krptn
+pip install krptn flask
 ```
 
 To extend this for TOTP MFA, please add an entry for TOTP MFA to the form, and pass it as a parameter to user.login. See [MFA in Krypton documentation](https://docs.krptn.dev/README-USER-AUTH.html#mfa)
