@@ -29,7 +29,7 @@
         const pwd = document.getElementsByName("password")[0].value; // Replace with your password form
         const query = {}
         query.email = email;
-        const repsonse = await fetch("/getFidoLogin", // Replace endpoint with yours
+        const repsonse = await fetch('/getFidoLogin', // Replace endpoint with yours
             {cache: 'no-cache',
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -71,10 +71,10 @@
         }
         credential.email = email;
         credential.password = pwd;
-        const serverCreds = await fetch("/FIDOLogin",
+        const serverCreds = await fetch('/FIDOLogin',
             {cache: 'no-cache',
             method: 'POST',
-            credentials: "same-origin",
+            credentials: 'same-origin',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(credential)}
         );
