@@ -4,7 +4,7 @@
 
 In case you recieve concurency errors from SQLite, please use a different database backend. See our docs about [databases](https://docs.krptn.dev/README-DATABASES.html).
 
-Don't forget to install Krypton & Flask before:
+Don't forget to install Krptn & Flask before:
 
 ```shell
 pip install krptn flask
