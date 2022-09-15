@@ -10,8 +10,6 @@ Don't forget to install Krptn & Flask before:
 pip install krptn flask
 ```
 
-To extend this for TOTP MFA, please add an entry for TOTP MFA to the form, and pass it as a parameter to user.login. See [MFA in Krypton documentation](https://docs.krptn.dev/README-USER-AUTH.html#mfa)
-
 Note: this example does not guard against brute force attacks. Please ensure rate limiting is configured on your server.
 
 ## Copyrights
@@ -20,7 +18,7 @@ This is a modified version of the [Digital Ocean article](https://www.digitaloce
 
 Some of this code was taken from [Google's WebAuthn tutorial on Glitch](https://glitch.com/edit/#!/webauthn-codelab-start?path=README.md%3A1%3A0).
 
-This code was modified from these sources to work with Krypton's Auth Backends. These include changing auth URLs, base64 decoding/encoding, and modifying links on the webpage.
+This code was modified from these sources to work with Krptn's Auth Backends. These include changing auth URLs, base64 decoding/encoding, and modifying URLs.
 
 Here are the original copyright notices:
 
