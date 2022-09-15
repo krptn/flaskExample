@@ -1,4 +1,4 @@
-# Example Krypton integration with Flask (with FIDO (WebAuthn))
+# Example Krptn integration with Flask (with FIDO (WebAuthn))
 
 **Note:** for multiple reasons, this example is not production ready. Please do not use this in such an environment but rather take ideas from here on how to integrate Flask and Krypton.
 
