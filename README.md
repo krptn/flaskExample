@@ -1,6 +1,6 @@
-# Example Krptn integration with Flask (with FIDO (WebAuthn))
+# Krptn integration with Flask (WebAuthn)
 
-**Note:** for multiple reasons, this example is not production ready. Please do not use this in such an environment but rather take ideas from here on how to integrate Flask and Krypton.
+**Note:** for multiple reasons, this example is not production ready. Please do not use this in such an environment but rather take ideas from here on how to integrate Flask and Krptn.
 
 In case you recieve concurency errors from SQLite, please use a different database backend. See our docs about [databases](https://docs.krptn.dev/README-DATABASES.html).
 
