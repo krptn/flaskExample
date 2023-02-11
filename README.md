@@ -2,6 +2,8 @@
 
 **Note:** for multiple reasons, this example is not production ready. Please do not use this in such an environment but rather take ideas from here on how to integrate Flask and Krptn.
 
+Also, you cannot run this without deploying it to a domain. If you run it, make sure to set your domain in `app.py`.
+
 In case you recieve concurency errors from SQLite, please use a different database backend. See our docs about [databases](https://docs.krptn.dev/README-DATABASES.html).
 
 Don't forget to install Krptn & Flask before:
