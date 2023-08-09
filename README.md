@@ -10,6 +10,13 @@ Don't forget to install Krptn & Flask before:
 
 ```shell
 pip install krptn flask
+flask run
+```
+
+Or:
+
+```shell
+docker build -t flask_example . && docker run --rm -p 8000:8000 -it flask_example
 ```
 
 Note: this example does not guard against brute force attacks. Please ensure rate limiting is configured on your server.
