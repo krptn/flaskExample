@@ -9,7 +9,7 @@ In case you recieve concurency errors from SQLite, please use a different databa
 Don't forget to install Krptn & Flask before:
 
 ```shell
-pip install krptn flask
+pip install -r requirements.txt
 flask run
 ```
 

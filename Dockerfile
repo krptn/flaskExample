@@ -1,8 +1,8 @@
 FROM python:3.10
 
-RUN pip install krptn flask
-
 COPY . .
+
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
